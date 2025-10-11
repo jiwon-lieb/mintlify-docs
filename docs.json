@@ -1,13 +1,13 @@
 {
   "$schema": "https://mintlify.com/docs.json",
-  "theme": "mint",
   "name": "Notifly Docs",
-  "colors": {
-    "primary": "#16A34A",
-    "light": "#07C983",
-    "dark": "#15803D"
+  "theme": "palm",
+   "colors": {
+    "primary": "#0144CD",
+    "light": "#3F7BFF",
+    "dark": "#0039A6"
   },
-  "favicon": "/favicon.svg",
+  "favicon": "/favicon.ico",
   "navigation": {
     "tabs": [
       {
@@ -15,6 +15,7 @@
         "groups": [
           {
             "group": "Getting started",
+            "expanded": true,
             "pages": [
               "index"
             ]
@@ -29,11 +30,13 @@
               "sdk/react-native-sdk",
               "sdk/flutter-sdk",
               "sdk/javascript-sdk",
+              "sdk/google-tag-manager",
               "integration-test"
             ]
           },
           {
             "group": "심화 연동",
+            "expanded": false,
             "pages": [
               "advanced/index",
               "advanced/push-notification-icon",
@@ -42,12 +45,6 @@
               "advanced/push-notification-interceptor",
               "advanced/inapp-popup-event-listener",
               "advanced/webview"
-            ]
-          },
-          {
-            "group": "Google Tag Manager",
-            "pages": [
-              "google-tag-manager"
             ]
           }
         ]
@@ -66,7 +63,7 @@
     ]
   },
   "logo": {
-    "light": "/logo/light.svg",
-    "dark": "/logo/dark.svg"
+    "light": "/images/notifly.png",
+    "dark": "/images/notifly.png"
   }
 }
