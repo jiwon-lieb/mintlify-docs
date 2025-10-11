@@ -54,7 +54,7 @@
         "groups": [
           {
             "group": "시작하기",
-            "pages":["api-reference/http-api", "api-reference/authenticate", "api-reference/error" ]
+            "pages":["api-reference/getting-started", "api-reference/authenticate", "api-reference/error" ]
           },
           {
             "group": "Events & Users",
