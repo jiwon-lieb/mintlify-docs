@@ -53,9 +53,68 @@
         "tab": "HTTP API",
         "groups": [
           {
-            "group": "HTTP API",
+            "group": "시작하기",
+            "pages":["api-reference/http-api"]
+          },
+          {
+            "group": "Authentication",
             "pages": [
-              "http-api/http-api"
+              "api-reference/auth/authenticate"
+            ]
+          },
+          {
+            "group": "Events",
+            "pages": [
+              "api-reference/events/track-event"
+            ]
+          },
+          {
+            "group": "Users",
+            "pages": [
+              "api-reference/users/set-user-properties",
+              "api-reference/users/delete-users"
+            ]
+          },
+          {
+            "group": "Campaigns",
+            "pages": [
+              "api-reference/campaigns/trigger-campaign",
+              "api-reference/campaigns/get-campaign-stats"
+            ]
+          },
+          {
+            "group": "Campaign Data Export",
+            "pages": [
+              "api-reference/exports/request",
+              "api-reference/exports/result",
+              "api-reference/exports/event-name-types",
+              "api-reference/exports/message-data-examples"
+            ]
+          },
+          {
+            "group": "Messaging - Text",
+            "pages": [
+              "api-reference/messaging/send-text-message",
+              "api-reference/messaging/080/find-recipients",
+              "api-reference/messaging/080/register-recipients",
+              "api-reference/messaging/080/remove-recipients"
+            ]
+          },
+          {
+            "group": "Messaging - Kakao",
+            "pages": [
+              "api-reference/messaging/send-kakao-alimtalk",
+              "api-reference/kakao-template/list",
+              "api-reference/kakao-template/create",
+              "api-reference/kakao-template/update",
+              "api-reference/kakao-template/delete",
+              "api-reference/messaging/send-kakao-friendtalk"
+            ]
+          },
+          {
+            "group": "User Journeys",
+            "pages": [
+              "api-reference/journeys/trigger-journey"
             ]
           }
         ]
