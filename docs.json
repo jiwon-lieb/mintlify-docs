@@ -55,7 +55,7 @@
           {
             "group": "HTTP API",
             "pages": [
-              "http-api"
+              "http-api/http-api"
             ]
           }
         ]

@@ -330,3 +330,112 @@ code {
   color: #fff !important;
 }
 
+/* ======================================
+   Notifly Table Styling (Mintlify MDX)
+   ====================================== */
+.mdx-content table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1.5rem 0;
+  table-layout: fixed;
+  border-radius: 10px;
+  overflow: hidden;
+  font-family: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont,
+               "Segoe UI", Roboto, "Helvetica Neue", Arial, "Apple SD Gothic Neo",
+               "Noto Sans KR", sans-serif;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  border: 1px solid #d0d7de;
+}
+
+/* Header */
+.mdx-content th {
+  background-color: #0144CD;
+  color: #ffffff;
+  font-weight: 600;
+  text-align: center;
+  padding: 12px 14px;
+  border-bottom: 2px solid #0039A6;
+}
+/* Make sure tbody and thead match table width */
+.mdx-content thead,
+.mdx-content tbody {
+  display: table;
+  width: 100%;
+  table-layout: fixed;
+}
+
+/* Fix floating border issue in Mintlify’s prose mode */
+.mdx-content thead tr,
+.mdx-content tbody tr {
+  display: table-row;
+  width: 100%;
+}
+
+/* Header */
+.mdx-content thead tr {
+  background-color: #0144CD;
+}
+
+/* Body cells */
+.mdx-content td {
+  background-color: #ffffff;
+  color: #1b1f23;
+  padding: 10px 14px;
+  border-bottom: 1px solid #e5e7eb;
+  vertical-align: middle;
+}
+
+/* Left-align the first column */
+.mdx-content td:first-child,
+.mdx-content th:first-child {
+  text-align: left;
+  font-weight: 500;
+}
+
+/* Zebra striping */
+.mdx-content tr:nth-child(even) td {
+  background-color: #f9fafc;
+}
+
+/* Hover highlight */
+.mdx-content tr:hover td {
+  background-color: #eff6ff;
+}
+
+/* ✅ Responsive tweaks for narrow screens */
+@media (max-width: 768px) {
+  .mdx-content table {
+    font-size: 0.9rem;
+  }
+  .mdx-content th,
+  .mdx-content td {
+    padding: 8px 10px;
+  }
+}
+
+/* =======================
+   Dark mode
+   ======================= */
+@media (prefers-color-scheme: dark) {
+  .mdx-content table {
+    border-color: #2d333b;
+  }
+  .mdx-content th {
+    background-color: #0039A6;
+    border-bottom: 2px solid #0144CD;
+    color: #ffffff;
+  }
+  .mdx-content td {
+    background-color: #1b1f23;
+    color: #e6edf3;
+    border-bottom: 1px solid #30363d;
+  }
+  .mdx-content tr:nth-child(even) td {
+    background-color: #23292f;
+  }
+  .mdx-content tr:hover td {
+    background-color: #0144CD33;
+  }
+}
+
