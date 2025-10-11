@@ -1,7 +1,7 @@
 {
   "$schema": "https://mintlify.com/docs.json",
   "name": "Notifly Docs",
-  "theme": "palm",
+  "theme": "mint",
    "colors": {
     "primary": "#0144CD",
     "light": "#3F7BFF",
@@ -22,8 +22,8 @@
           },
           {
             "group": "Client SDK",
+            "expanded": false,
             "pages": [
-              "sdk/index",
               "sdk/firebase-integration",
               "sdk/ios-sdk",
               "sdk/android-sdk",
