@@ -11,7 +11,7 @@
   "navigation": {
     "tabs": [
       {
-        "tab": "Guides",
+        "tab": "SDK",
         "groups": [
           {
             "group": "Getting started",
@@ -21,8 +21,8 @@
           },
           {
             "group": "Client SDK",
-            "page": "sdk/index",
             "pages": [
+              "sdk/index",
               "sdk/firebase-integration",
               "sdk/ios-sdk",
               "sdk/android-sdk",
@@ -34,8 +34,8 @@
           },
           {
             "group": "심화 연동",
-            "page": "advanced/index",
             "pages": [
+              "advanced/index",
               "advanced/push-notification-icon",
               "advanced/push-notification-consent",
               "advanced/push-notification-click-events",
@@ -53,7 +53,7 @@
         ]
       },
       {
-        "tab": "API reference",
+        "tab": "HTTP API",
         "groups": [
           {
             "group": "HTTP API",
