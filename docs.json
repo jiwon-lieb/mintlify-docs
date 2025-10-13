@@ -25,8 +25,14 @@
             "expanded": false,
             "pages": [
               "sdk/firebase-integration",
-              "sdk/ios-sdk",
-              "sdk/android-sdk",
+              {
+                "group": "iOS",
+                "pages": ["sdk/ios-sdk.mdx"]
+              },
+              {
+                "group": "Android",
+                "pages": ["sdk/android-sdk.mdx"]
+              },
               "sdk/react-native-sdk",
               "sdk/flutter-sdk",
               "sdk/javascript-sdk",
