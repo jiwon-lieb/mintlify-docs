@@ -27,11 +27,19 @@
               "sdk/firebase-integration",
               {
                 "group": "iOS",
-                "pages": ["sdk/ios-sdk.mdx"]
+                "pages": [
+                  "sdk/ios/ios-sdk",
+                  "sdk/ios/integration",
+                  "sdk/ios/user-property",
+                  "sdk/ios/event-logging",
+                  "sdk/ios/test",
+                  "sdk/ios/advanced",
+                  "sdk/ios/faq"
+                ]
               },
               {
                 "group": "Android",
-                "pages": ["sdk/android-sdk.mdx"]
+                "pages": ["sdk/android-sdk"]
               },
               "sdk/react-native-sdk",
               "sdk/flutter-sdk",
