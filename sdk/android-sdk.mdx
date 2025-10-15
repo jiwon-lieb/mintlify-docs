@@ -2,6 +2,207 @@
 title: "Android 연동"
 ---
 
-# Client SDK - Android
+Notifly Android SDK는 **Android 애플리케이션과 Notifly 플랫폼을 통합**하기 위한 도구입니다.  
+Firebase Cloud Messaging(FCM)을 기반으로 앱 푸시, 인앱 팝업, 유저 속성 및 이벤트 로깅 기능을 제공합니다.
 
-We apologize for the inconvenience, but this document is currently being prepared and is not yet available. We are working diligently to complete it and will make it available as soon as possible. Thank you for your patience and understanding.
+
+## Before You Start
+
+1. **Firebase 프로젝트 연동 완료**  
+   Notifly는 [Firebase Cloud Messaging](https://firebase.google.com/docs/cloud-messaging)을 기반으로 합니다.  
+> 👉 [Firebase 프로젝트 연동 가이드](sdk/firebase-integration.mdx)
+
+2. **Android 11 (API Level 30) 이상**  
+   인앱 팝업 캠페인은 Android 11 이상에서만 지원됩니다.
+
+---
+
+## 1. SDK 설치 (`Notifly.initialize()`)
+
+Notifly Android SDK는 [JitPack](https://jitpack.io/)을 통해 배포됩니다.
+
+### Gradle 설정
+
+```gradle title="build.gradle (root)"
+dependencyResolutionManagement {
+    repositories {
+        maven { url 'https://jitpack.io' }
+    }
+}
+```
+
+### SDK 의존성 추가
+
+```gradle title="build.gradle (Module: app)"
+dependencies {
+    implementation 'com.github.team-michael:notifly-android-sdk:1.12.0'
+}
+```
+
+> SDK는 기능/보안 업데이트가 자주 배포됩니다.  
+> [JitPack 최신 버전](https://jitpack.io/#team-michael/notifly-android-sdk)을 사용하세요.
+
+---
+
+### 초기화 코드 추가
+
+`Application` 클래스에서 초기화하는 것이 가장 안전합니다.
+
+```kotlin title="MainApplication.kt"
+import tech.notifly.Notifly
+
+class MainApplication : Application() {
+    override fun onCreate() {
+        super.onCreate()
+        Notifly.initialize(
+            applicationContext,
+            NOTIFLY_PROJECT_ID,
+            BuildConfig.NOTIFLY_USERNAME,
+            BuildConfig.NOTIFLY_PASSWORD
+        )
+    }
+}
+```
+
+> `NOTIFLY_PROJECT_ID`, `USERNAME`, `PASSWORD`는 Notifly 관리자 페이지에서 확인할 수 있습니다.
+
+---
+
+## 2. 유저 정보 등록
+
+Notifly는 **User ID**와 **유저 프로퍼티**를 기반으로 개인화된 캠페인을 수행합니다.
+
+### 유저 ID 등록
+
+```kotlin
+Notifly.setUserId(context, "exampleUserId")
+```
+
+<Note>로그아웃 시 `Notifly.setUserId(context, null)`을 호출하여 등록을 해제하세요.  
+등록 해제 시 해당 유저의 캠페인 및 피로도 데이터가 삭제됩니다.</Note>
+
+---
+
+### 유저 프로퍼티 등록
+
+```kotlin
+Notifly.setUserProperties(
+    context,
+    mapOf(
+        "$phone_number" to "01012345678",
+        "$email" to "user@example.com",
+        "plan" to "premium"
+    )
+)
+```
+
+<ParamField path="$phone_number" type="string">
+  SMS/카카오 발송용 전화번호
+</ParamField>
+<ParamField path="$email" type="string">
+  SMS/카카오 발송용 전화번호
+</ParamField>
+<ParamField path="기타" type="string">
+  마케팅 세그먼트 필드
+</ParamField>
+
+| 필드 | 필수 | 설명 |
+|------|------|------|
+| `$phone_number` | 선택 | SMS/카카오 발송용 전화번호 |
+| `$email` | 선택 | 이메일 발송용 주소 |
+| 기타 | 선택 | 마케팅 세그먼트 필드 |
+
+---
+
+## 3. 이벤트 로깅
+
+유저 행동을 기록하여 캠페인 트리거나 세그먼트 조건으로 활용할 수 있습니다.
+
+```kotlin
+Notifly.trackEvent(
+    context,
+    eventName = "click_button",
+    eventParams = mapOf("key" to "value", "clicked" to true),
+    segmentationEventParamKeys = listOf("key")
+)
+```
+
+<ParamField path="eventName" type="String">
+  이벤트 이름
+</ParamField>
+<ParamField path="eventParams" type="Map">
+  부가 파라미터
+</ParamField>
+<ParamField path="segmentationEventParamKeys" type="List">
+  세그먼트 구분용 키
+</ParamField>
+
+| 파라미터 | 타입 | 설명 |
+|-----------|-------|------|
+| `eventName` | String | 이벤트 이름 |
+| `eventParams` | Map | 부가 파라미터 |
+| `segmentationEventParamKeys` | List | 세그먼트 구분용 키 |
+
+<Info>
+현재 segmentationEventParamKeys는 **최대 1개 Key**만 지원됩니다.
+</Info>
+
+---
+
+## 4. 내부 유저 ID 확인
+
+Notifly가 내부적으로 사용하는 유저 식별자를 반환합니다.  
+외부 연동 시 필요한 경우만 사용하세요.
+
+```kotlin
+val notiflyUserId = Notifly.getNotiflyUserId(context)
+```
+
+---
+
+## 5. 연동 테스트
+
+SDK 설치 후 아래 페이지에서 실제 이벤트 및 푸시 수신 여부를 테스트하세요.  
+👉 [Client SDK - 연동 Test](https://docs.notifly.tech/ko/developer-guide/client-sdk/sdk_test)
+
+---
+
+## Advanced Topics
+
+<Columns cols={3}>
+
+  <Card
+    title="Push Icon & Consent"
+    icon="bell"
+    href="/sdk/android-advanced#push-icon-consent"
+  >
+    푸시 아이콘 등록 및 권한 프롬프트 설정
+  </Card>
+
+  <Card
+    title="Click Event Subscription"
+    icon="mouse-pointer"
+    href="/sdk/android-advanced#click-event"
+  >
+    알림 클릭 이벤트 리스너 연동
+  </Card>
+
+  <Card
+    title="In-App Popup Integration"
+    icon="layout-dashboard"
+    href="/sdk/android-advanced#inapp-popup"
+  >
+    인앱 팝업 캠페인 표시
+  </Card>
+
+</Columns>
+
+---
+
+## FAQ
+
+<AccordionGroup>
+  <Accordion title="이미 Firebase Cloud Messaging을 사용 중인데 어떻게 해야 할까요?">
+    Notifly Android SDK는 기존 앱에서 사용하고 있을 수 있는 Firebase Cloud Messaging과 함께 사용하실 수 있습니다.
+  </Accordion>
+</AccordionGroup>
