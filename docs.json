@@ -28,8 +28,8 @@
               {
                 "group": "Mobile",
                 "pages": [
-                  "sdk/ios-sdk",
                   "sdk/android-sdk",
+                  "sdk/ios-sdk",
                   "sdk/react-native-sdk",
                   "sdk/flutter-sdk"
                 ]
